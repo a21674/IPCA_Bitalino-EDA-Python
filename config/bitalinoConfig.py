@@ -4,8 +4,8 @@ from bitalino import BITalino
 
 # The macAddress variable on Windows can be "XX:XX:XX:XX:XX:XX" or "COMX"
 # while on Mac OS can be "/dev/tty.BITalino-XX-XX-DevB" for devices ending with the last 4 digits of the MAC address or "/dev/tty.BITalino-DevB" for the remaining
-# macAddress = "98:D3:61:FD:6E:31"
-macAddress = "98:D3:91:FD:58:66"
+macAddress = "98:D3:61:FD:6E:31"
+#macAddress = "98:D3:91:FD:58:66" #Rafael
 
 batteryThreshold = 30
 acqChannels = [2]  # EDA = 2 - [0, 1, 2, 3, 4, 5]
