@@ -13,23 +13,16 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
         self.addedData = []
         print(matplotlib.__version__)
         # The data
-        self.xlim = 200
+        self.xlim = 140
         self.n = np.linspace(0, self.xlim - 1, self.xlim)
-        a = []
-        b = []
-        a.append(2.0)
-        a.append(4.0)
-        a.append(2.0)
-        b.append(4.0)
-        b.append(3.0)
-        b.append(4.0)
+      
         self.y = (self.n * 0.0) + 50
         # The window
         self.fig = Figure(figsize=(5,5), dpi=100)
         self.ax1 = self.fig.add_subplot(111)
         # self.ax1 settings
-        self.ax1.set_xlabel('time')
-        self.ax1.set_ylabel('raw data')
+        self.ax1.set_xlabel('Tempo (segundos)')
+        self.ax1.set_ylabel('uS (MicroSiemens')
         self.line1 = Line2D([], [], color='blue')
         self.line1_tail = Line2D([], [], color='red', linewidth=2)
         self.line1_head = Line2D([], [], color='red', marker='o', markeredgecolor='r')
@@ -39,7 +32,7 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
         self.ax1.set_xlim(0, self.xlim - 1)
         self.ax1.set_ylim(0, 25) #yAxis
         FigureCanvas.__init__(self, self.fig)
-        TimedAnimation.__init__(self, self.fig, interval = 50, blit = True)
+        TimedAnimation.__init__(self, self.fig, interval = 1000, blit = True)
         return
 
     def new_frame_seq(self):

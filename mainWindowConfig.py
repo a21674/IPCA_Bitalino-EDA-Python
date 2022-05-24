@@ -1,8 +1,10 @@
 from plotConfig import CustomFigCanvas
 import threading
+from PyQt5 import QtGui, QtWidgets, QtCore
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from ..config.dataReader import dataSendLoop
+from dataReader import dataSendLoop
+
 
 class CustomMainWindow(QMainWindow):
     def __init__(self):
@@ -18,11 +20,10 @@ class CustomMainWindow(QMainWindow):
         self.setCentralWidget(self.FRAME_A)
 
         # Place the zoom button
-        self.zoomBtn = QPushButton(text='Média')
+        self.zoomBtn = QPushButton(text='Start')
         self.zoomBtn.setFixedSize(100, 50)
-        self.zoomBtn.clicked.connect(self.zoomBtnAction)
+        self.zoomBtn.clicked.connect(self.startBtnAction)
         self.LAYOUT_A.addWidget(self.zoomBtn, *(0, 0))
-
 
         # Place the matplotlib figure
         self.myFig = CustomFigCanvas()
@@ -33,6 +34,13 @@ class CustomMainWindow(QMainWindow):
         self.show()
         return
 
+
+    def startBtnAction(self):
+        print("zoom in")
+        self.myFig.zoomIn(5)
+        return
+    
+    
     def addData_callbackFunc(self, value):
         # print("Add data: " + str(value))
         self.myFig.addData(value)
