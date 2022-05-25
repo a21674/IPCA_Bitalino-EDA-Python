@@ -13,7 +13,7 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
         self.addedData = []
         print(matplotlib.__version__)
         # The data
-        self.xlim = 140
+        self.xlim = 1000
         self.n = np.linspace(0, self.xlim - 1, self.xlim)
       
         self.y = (self.n * 0.0) + 50
@@ -21,8 +21,8 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
         self.fig = Figure(figsize=(5,5), dpi=100)
         self.ax1 = self.fig.add_subplot(111)
         # self.ax1 settings
-        self.ax1.set_xlabel('Tempo (segundos)')
-        self.ax1.set_ylabel('uS (MicroSiemens')
+        self.ax1.set_xlabel('Tempo (mS)')
+        self.ax1.set_ylabel('uS (MicroSiemens)')
         self.line1 = Line2D([], [], color='blue')
         self.line1_tail = Line2D([], [], color='red', linewidth=2)
         self.line1_head = Line2D([], [], color='red', marker='o', markeredgecolor='r')
@@ -75,13 +75,6 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
 ''' End Class '''
 
 
-# You need to setup a signal slot mechanism, to
-# send data to your GUI in a thread-safe way.
-# Believe me, if you don't do this right, things
-# go very very wrong..
-class Communicate(QObject):
-    data_signal = pyqtSignal(float)
 
-''' End Class '''
 
 
