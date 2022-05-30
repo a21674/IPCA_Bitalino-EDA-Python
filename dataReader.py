@@ -17,9 +17,13 @@ def dataSendLoop(addData_callbackFunc, stop):
         print(device.version()) # Read BITalino version
         device.start(bita.samplingRate, bita.acqChannels) # Start Acquisition
 
+        running_time = 15
+        start = time.time()
+        end = time.time()
+
         exportSamples = []
 
-        while True:
+        while (end - start) < running_time:
             
             samples = np.array(device.read(bita.nSamples))
             #print(samples[:, 5])
@@ -33,11 +37,14 @@ def dataSendLoop(addData_callbackFunc, stop):
                     mySrc.data_signal.emit(yAxis)
                     time.sleep(0.01) #segundos
                     
+                    end = time.time()
+                    
                     #se for invocado o stop para o loop
                     if (stop):
                         break
+            
+            handleData(exportSamples);
                                        
                 
-
-def Average(lst):
-    return sum(lst) / len(lst)
+def handleData(exportSamples):
+    print('teste export samples', exportSamples)

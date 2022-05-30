@@ -96,7 +96,6 @@ class Ui_MainWindowUi(object):
         self.btnBitalinoConnect.clicked.connect(self.startBitalinoPlotting)
         self.btnStart.clicked.connect(lambda:self.start_timer("countdown"))
         
-        
         self.i = 0        
         self.btnPergSeguinte.clicked.connect(lambda:self.startWithQuestions())
         
@@ -165,7 +164,7 @@ class Ui_MainWindowUi(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindowUi", "Introdução"))
         self.inputPergunta.setText(_translate("MainWindowUi", ""))
-        self.btnBitalinoConnect.setText(_translate("MainWindowUi", "Bitalino Connect"))
+        self.btnBitalinoConnect.setText(_translate("MainWindowUi", "Connect Bita"))
         self.btnStart.setText(_translate("MainWindowUi", "Começar"))
         self.btnPergAnterior.setText(_translate("MainWindowUi", "Anterior"))
         self.btnPergSeguinte.setText(_translate("MainWindowUi", "Próxima"))
