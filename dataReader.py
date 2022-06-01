@@ -1,15 +1,26 @@
 from bitalinoConfig import BitalinoDataRead
 from bitalino import BITalino
-from communicate import Communicate
 import time
 import numpy as np
+from PyQt5.QtCore import *
 
+#from ui.mainWindowUi import Ui_MainWindowUi
 
+# You need to setup a signal slot mechanism, to
+# send data to your GUI in a thread-safe way..
+class Communicate(QObject):
+    data_signal = pyqtSignal(float)
+    data_results = pyqtSignal(float)
+    
+    
+    
 
-def dataSendLoop(addData_callbackFunc, stop):
+def dataSendLoop(addData_callbackFunc, calcResults_callbackFunc):
         # Setup the signal-slot mechanism.
         mySrc = Communicate()
         mySrc.data_signal.connect(addData_callbackFunc)
+        mySrc.data_results.connect(calcResults_callbackFunc)
+        
         
         bita = BitalinoDataRead() #instaciação da classe Bitalino
         device = BITalino(bita.macAddress) # Connect to BITalino
@@ -21,30 +32,24 @@ def dataSendLoop(addData_callbackFunc, stop):
         start = time.time()
         end = time.time()
 
-        exportSamples = []
-
-        while (end - start) < running_time:
             
+
+        while True:
             samples = np.array(device.read(bita.nSamples))
             #print(samples[:, 5])
-
             for x in samples:
-                for y in x:
-                    data = x[5]
-                    yAxis = ((float(data) / (2 ** bita.resolution)) * 3.3) / 0.132
-                    
-                    exportSamples.append(yAxis)
-                    mySrc.data_signal.emit(yAxis)
-                    time.sleep(0.01) #segundos
-                    
-                    end = time.time()
-                    
-                    #se for invocado o stop para o loop
-                    if (stop):
-                        break
+                rawData = x[5]
+                uSData = ((float(rawData) / (2 ** bita.resolution)) * 3.3) / 0.132
+                #print(uSData)
+                mySrc.data_results.emit(uSData)
+                mySrc.data_signal.emit(uSData)
+
+                time.sleep(0.01) #segundos
+                
             
-            handleData(exportSamples);
+
                                        
                 
-def handleData(exportSamples):
-    print('teste export samples', exportSamples)
+
+
+

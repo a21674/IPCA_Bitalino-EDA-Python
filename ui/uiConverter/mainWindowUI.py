@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'mainWindowUi.ui'
+# Form implementation generated from reading ui file 'mainWindowUI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -9,10 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import threading
-from PyQt5.QtWidgets import *
-from ui.PlotWindowConfig import Ui_PlotWindow
-from dataReader import *
 
 
 class Ui_MainWindowUi(object):
@@ -396,83 +392,7 @@ class Ui_MainWindowUi(object):
         self.retranslateUi(MainWindowUi)
         self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindowUi)
-        
-        self.dataArray = []
-        
-        self.countdownTimer = QtCore.QTimer()
-        self.btnBitalinoConnect.clicked.connect(self.startBitalinoPlotting)
-        self.btnStart.clicked.connect(lambda:self.start_timer("countdown"))
-        
-        self.i = 0        
-        self.btnPergSeguinte.clicked.connect(lambda:self.startWithQuestions())
-        
-                
 
-    
-    def startBitalinoPlotting(self):
-        plotWin = Ui_PlotWindow()
-        self.stop_threads = False
-        # Add the callbackfunc to ..
-        self.myDataLoop = threading.Thread(name = 'myDataLoop', target = dataSendLoop, daemon = True, args = (plotWin.addData_callbackFunc, self.calcResults_callbackFunc))
-        self.myDataLoop.start()
-        return
-    
-    
-    def start_timer(self, funcao):
-        self.inputPergunta.setText("Respire fundo e concentre-se...")
-        
-        self.countdown = 15
-        self.countdownTimer.timeout.connect(self.update_clock)
-        self.countdownTimer.start(1000) # fires every 1000ms = 1s
-            
-
-    def update_clock(self):
-        if (self.countdown >= 0):
-            #update a clock label that shows the countdown value
-            self.inputPergunta.setText(str(self.countdown))
-            #or just print the vaule for now
-            print(self.countdown)
-            
-        self.countdown -= 1
-        
-        
-    
-    def startWithQuestions(self):
-        self.questions = ["Garante à máquina da verdade que não copiou no teste de Bioinstrumentação?",
-                    "Garante à máquina da verdade que nunca copiou num teste das UC's do professor Nuno Dias?",
-                    "Garante à máquina da verdade que nunca falou mal do professor Nuno Dias?"
-                    ]
-        self.qtdQuestions = len(self.questions)
-        
-        if(self.i <= self.qtdQuestions):
-            self.inputPergunta.setText(self.questions[self.i])
-            self.i += 1
-        else:
-            self.inputPergunta.setText("O seu teste terminou, aguarde os resultados!")
-            
-    
-    
-    def calcResults_callbackFunc(self, usData):
-        self.dataArray.append(usData)
-        #print(self.dataArray)
-        self.minimo = format(np.min(self.dataArray), '.2f')
-        self.maximo = format(np.max(self.dataArray), '.2f')
-        self.media = format(np.mean(self.dataArray), '.2f')
-        self.mediana = format(np.median(self.dataArray), '.2f')
-        self.desvioPadrao = format(np.std(self.dataArray), '.2f')
-        self.variancia = format(np.var(self.dataArray), '.2f')
-        #print('Maximo', self.maximo)
-        
-        self.label_Minimo.setText(str(self.minimo)+'uS')
-        self.label_Maximo.setText(str(self.maximo)+'uS')
-        self.label_Media.setText(str(self.media)+'uS')
-        self.label_Mediana.setText(str(self.mediana)+'uS')
-        self.label_desvioPadrao.setText(str(self.desvioPadrao)+'uS')
-        self.label_Variancia.setText(str(self.variancia)+'uS')
-    
-    
-    
-    
     def retranslateUi(self, MainWindowUi):
         _translate = QtCore.QCoreApplication.translate
         MainWindowUi.setWindowTitle(_translate("MainWindowUi", "Detector de Mentiras"))

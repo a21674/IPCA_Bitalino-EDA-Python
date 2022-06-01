@@ -1,14 +1,11 @@
 
 from PyQt5.QtWidgets import *
-from ui.PlotWindowConfig import Ui_PlotWindow
-from PyQt5 import QtCore, QtGui, QtWidgets
-import sys
+import numpy as np
+from ui.mainWindowUi import Ui_MainWindowUi
 
+def dataResults_callbackFunc(value):
+    data = Ui_MainWindowUi()
+    data.calcResults(value)
+    #print("Add data: " + str(value))
+        
 
-def openPlotWindow():
-    app = QApplication(sys.argv)
-    QApplication.setStyle(QStyleFactory.create('Plastique'))
-    myGUI = Ui_PlotWindow()
-    sys.exit(app.exec_())
-
-    

@@ -13,7 +13,7 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
         self.addedData = []
         print(matplotlib.__version__)
         # The data
-        self.xlim = 1000
+        self.xlim = 200
         self.n = np.linspace(0, self.xlim - 1, self.xlim)
       
         self.y = (self.n * 0.0) + 50

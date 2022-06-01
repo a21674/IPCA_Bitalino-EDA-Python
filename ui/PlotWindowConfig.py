@@ -1,11 +1,9 @@
-import threading
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-import sys
-from PyQt5 import QtCore, QtGui, QtWidgets
-from dataReader import *
+from PyQt5 import QtGui
 from plotConfig import CustomFigCanvas
+
 
 
 
@@ -61,7 +59,9 @@ class Ui_PlotWindow(QMainWindow):
         #print("Add data: " + str(value))
         self.myFig.addData(value)
         return                   
-                    
+                
+            
+    
                     
                     
 ''' End Class '''
