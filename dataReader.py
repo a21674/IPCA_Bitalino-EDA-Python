@@ -4,7 +4,6 @@ import time
 import numpy as np
 from PyQt5.QtCore import *
 
-#from ui.mainWindowUi import Ui_MainWindowUi
 
 # You need to setup a signal slot mechanism, to
 # send data to your GUI in a thread-safe way..
@@ -28,17 +27,13 @@ def dataSendLoop(addData_callbackFunc, calcResults_callbackFunc):
         print(device.version()) # Read BITalino version
         device.start(bita.samplingRate, bita.acqChannels) # Start Acquisition
 
-        running_time = 15
-        start = time.time()
-        end = time.time()
-
-            
+                    
 
         while True:
             samples = np.array(device.read(bita.nSamples))
             #print(samples[:, 5])
             for x in samples:
-                rawData = x[5]
+                rawData = x[5] #acesso a posição 5 do array que vem do bitalino
                 uSData = ((float(rawData) / (2 ** bita.resolution)) * 3.3) / 0.132
                 #print(uSData)
                 mySrc.data_results.emit(uSData)

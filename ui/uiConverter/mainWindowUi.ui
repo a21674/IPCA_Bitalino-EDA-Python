@@ -43,7 +43,7 @@
       <x>20</x>
       <y>90</y>
       <width>1041</width>
-      <height>411</height>
+      <height>421</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -301,7 +301,7 @@ p, li { white-space: pre-wrap; }
         </rect>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>0.00uS</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_Maximo">
@@ -314,7 +314,7 @@ p, li { white-space: pre-wrap; }
         </rect>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>0.00uS</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_Media">
@@ -327,7 +327,7 @@ p, li { white-space: pre-wrap; }
         </rect>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>0.00uS</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_Mediana">
@@ -340,7 +340,7 @@ p, li { white-space: pre-wrap; }
         </rect>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>0.00uS</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_desvioPadrao">
@@ -353,7 +353,7 @@ p, li { white-space: pre-wrap; }
         </rect>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>0.00uS</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_Variancia">
@@ -366,7 +366,7 @@ p, li { white-space: pre-wrap; }
         </rect>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>0.00uS</string>
        </property>
       </widget>
      </widget>
@@ -378,8 +378,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="input_ResultadoFinal_Q1">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>30</y>
+        <x>60</x>
+        <y>60</y>
         <width>951</width>
         <height>20</height>
        </rect>
@@ -398,8 +398,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="input_ResultadoFinal_Q2">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>150</y>
+        <x>60</x>
+        <y>180</y>
         <width>961</width>
         <height>20</height>
        </rect>
@@ -418,8 +418,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="input_ResultadoFinal_Q3">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>270</y>
+        <x>60</x>
+        <y>300</y>
         <width>961</width>
         <height>20</height>
        </rect>
@@ -438,34 +438,34 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_Minimo_RQ1">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>60</y>
+        <x>120</x>
+        <y>90</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_Maximo_RQ1">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>90</y>
+        <x>120</x>
+        <y>120</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>90</y>
+        <x>60</x>
+        <y>120</y>
         <width>55</width>
         <height>16</height>
        </rect>
@@ -483,8 +483,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>60</y>
+        <x>60</x>
+        <y>90</y>
         <width>55</width>
         <height>16</height>
        </rect>
@@ -502,21 +502,21 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_Mediana_RQ1">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>90</y>
+        <x>320</x>
+        <y>120</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>60</y>
+        <x>250</x>
+        <y>90</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -534,21 +534,21 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_Media_RQ1">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>60</y>
+        <x>320</x>
+        <y>90</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_10">
       <property name="geometry">
        <rect>
-        <x>200</x>
-        <y>90</y>
+        <x>240</x>
+        <y>120</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -566,21 +566,21 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_desvioPadrao_RQ1">
       <property name="geometry">
        <rect>
-        <x>540</x>
-        <y>60</y>
+        <x>570</x>
+        <y>90</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_11">
       <property name="geometry">
        <rect>
-        <x>410</x>
-        <y>60</y>
+        <x>450</x>
+        <y>90</y>
         <width>111</width>
         <height>16</height>
        </rect>
@@ -598,8 +598,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_12">
       <property name="geometry">
        <rect>
-        <x>450</x>
-        <y>90</y>
+        <x>480</x>
+        <y>120</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -617,21 +617,21 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_Variancia_RQ1">
       <property name="geometry">
        <rect>
-        <x>540</x>
-        <y>90</y>
+        <x>570</x>
+        <y>120</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_13">
       <property name="geometry">
        <rect>
-        <x>750</x>
-        <y>50</y>
+        <x>780</x>
+        <y>80</y>
         <width>111</width>
         <height>31</height>
        </rect>
@@ -650,47 +650,47 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_Resultado_Q1">
       <property name="geometry">
        <rect>
-        <x>750</x>
-        <y>80</y>
+        <x>780</x>
+        <y>110</y>
         <width>111</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>...</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_Maximo_RQ2">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>210</y>
+        <x>120</x>
+        <y>240</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_Mediana_RQ2">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>210</y>
+        <x>320</x>
+        <y>240</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_14">
       <property name="geometry">
        <rect>
-        <x>410</x>
-        <y>180</y>
+        <x>440</x>
+        <y>210</y>
         <width>111</width>
         <height>16</height>
        </rect>
@@ -708,8 +708,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_15">
       <property name="geometry">
        <rect>
-        <x>450</x>
-        <y>210</y>
+        <x>480</x>
+        <y>240</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -727,8 +727,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_16">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>180</y>
+        <x>60</x>
+        <y>210</y>
         <width>55</width>
         <height>16</height>
        </rect>
@@ -746,60 +746,60 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_Resultado_Q2">
       <property name="geometry">
        <rect>
-        <x>750</x>
-        <y>200</y>
+        <x>780</x>
+        <y>230</y>
         <width>111</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>...</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_Minimo_RQ2">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>180</y>
+        <x>120</x>
+        <y>210</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_Variancia_RQ2">
       <property name="geometry">
        <rect>
-        <x>540</x>
-        <y>210</y>
+        <x>570</x>
+        <y>240</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_desvioPadrao_RQ2">
       <property name="geometry">
        <rect>
-        <x>540</x>
-        <y>180</y>
+        <x>570</x>
+        <y>210</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_17">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>210</y>
+        <x>60</x>
+        <y>240</y>
         <width>55</width>
         <height>16</height>
        </rect>
@@ -817,8 +817,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_18">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>180</y>
+        <x>250</x>
+        <y>210</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -836,8 +836,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_19">
       <property name="geometry">
        <rect>
-        <x>200</x>
-        <y>210</y>
+        <x>230</x>
+        <y>240</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -855,21 +855,21 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_Media_RQ2">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>180</y>
+        <x>320</x>
+        <y>210</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_20">
       <property name="geometry">
        <rect>
-        <x>750</x>
-        <y>170</y>
+        <x>780</x>
+        <y>200</y>
         <width>111</width>
         <height>31</height>
        </rect>
@@ -888,34 +888,34 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_Maximo_RQ3">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>330</y>
+        <x>120</x>
+        <y>360</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_Mediana_RQ3">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>330</y>
+        <x>320</x>
+        <y>360</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_21">
       <property name="geometry">
        <rect>
-        <x>410</x>
-        <y>300</y>
+        <x>440</x>
+        <y>330</y>
         <width>111</width>
         <height>16</height>
        </rect>
@@ -933,8 +933,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_22">
       <property name="geometry">
        <rect>
-        <x>450</x>
-        <y>330</y>
+        <x>480</x>
+        <y>360</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -952,8 +952,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_23">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>300</y>
+        <x>60</x>
+        <y>330</y>
         <width>55</width>
         <height>16</height>
        </rect>
@@ -971,60 +971,60 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_Resultado_Q3">
       <property name="geometry">
        <rect>
-        <x>750</x>
-        <y>320</y>
+        <x>780</x>
+        <y>350</y>
         <width>111</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>...</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_Minimo_RQ3">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>300</y>
+        <x>120</x>
+        <y>330</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_Variancia_RQ3">
       <property name="geometry">
        <rect>
-        <x>540</x>
-        <y>330</y>
+        <x>570</x>
+        <y>360</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_desvioPadrao_RQ3">
       <property name="geometry">
        <rect>
-        <x>540</x>
-        <y>300</y>
+        <x>570</x>
+        <y>330</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_24">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>330</y>
+        <x>60</x>
+        <y>360</y>
         <width>55</width>
         <height>16</height>
        </rect>
@@ -1042,8 +1042,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_25">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>300</y>
+        <x>250</x>
+        <y>330</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -1061,8 +1061,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_26">
       <property name="geometry">
        <rect>
-        <x>200</x>
-        <y>330</y>
+        <x>230</x>
+        <y>360</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -1080,21 +1080,21 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_Media_RQ3">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>300</y>
+        <x>320</x>
+        <y>330</y>
         <width>55</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>0.00uS</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_27">
       <property name="geometry">
        <rect>
-        <x>750</x>
-        <y>290</y>
+        <x>780</x>
+        <y>320</y>
         <width>111</width>
         <height>31</height>
        </rect>
@@ -1108,6 +1108,19 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="text">
        <string>Resultado:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_CalcularResultados">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Calcular</string>
       </property>
      </widget>
     </widget>
