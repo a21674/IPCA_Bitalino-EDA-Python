@@ -6,7 +6,6 @@ from plotConfig import CustomFigCanvas
 
 
 
-
 class Ui_PlotWindow(QMainWindow):
     def __init__(self):
         super(Ui_PlotWindow, self).__init__()
