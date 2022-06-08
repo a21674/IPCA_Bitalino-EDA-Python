@@ -398,8 +398,9 @@ class Ui_MainWindowUi(object):
         MainWindowUi.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindowUi)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindowUi)
+
         
         self.liveData = [] #Recebe os dados em tempo real
         self.accumulatedData = [] #Recebe e acumula os dados
@@ -505,7 +506,15 @@ class Ui_MainWindowUi(object):
         self.label_Maximo_RQ1.setText(str(self.testResults[0]))
         
     
-    
+        #Calculo dos dados do periodo de repouso (PR)
+        self.minimoPR = format(np.min(self.testResults[0]), '.2f')
+        self.maximoPR = format(np.max(self.testResults[0]), '.2f')
+        self.mediaPR = format(np.mean(self.testResults[0]), '.2f')
+        self.medianaPR = format(np.median(self.testResults[0]), '.2f')
+        self.desvioPadraoPR = format(np.std(self.testResults[0]), '.2f')
+        self.varianciaPR = format(np.var(self.testResults[0]), '.2f')
+                
+        self.label_Maximo_RQ1.setText(str(self.testResults[0]))
     
     
     
