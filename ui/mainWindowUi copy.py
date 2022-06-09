@@ -1,6 +1,14 @@
-# -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'teste.ui'
+    
+    
+    
+    
+    
+    
+    
+    # -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'mainWindowUi.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -9,6 +17,12 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import threading
+from PyQt5.QtWidgets import *
+from ui.PlotWindowConfig import Ui_PlotWindow
+from scipy.signal import find_peaks
+from dataReader import *
+
 
 
 class Ui_MainWindowUi(object):
@@ -46,26 +60,6 @@ class Ui_MainWindowUi(object):
         self.inputPergunta.setFont(font)
         self.inputPergunta.setAlignment(QtCore.Qt.AlignCenter)
         self.inputPergunta.setObjectName("inputPergunta")
-        self.layoutWidget = QtWidgets.QWidget(self.tab_2)
-        self.layoutWidget.setGeometry(QtCore.QRect(190, 20, 399, 30))
-        self.layoutWidget.setObjectName("layoutWidget")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.btnStart = QtWidgets.QPushButton(self.layoutWidget)
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        font.setBold(True)
-        font.setWeight(75)
-        self.btnStart.setFont(font)
-        self.btnStart.setObjectName("btnStart")
-        self.horizontalLayout.addWidget(self.btnStart)
-        self.btnPergAnterior = QtWidgets.QPushButton(self.layoutWidget)
-        self.btnPergAnterior.setObjectName("btnPergAnterior")
-        self.horizontalLayout.addWidget(self.btnPergAnterior)
-        self.btnPergSeguinte = QtWidgets.QPushButton(self.layoutWidget)
-        self.btnPergSeguinte.setObjectName("btnPergSeguinte")
-        self.horizontalLayout.addWidget(self.btnPergSeguinte)
         self.btnBitalinoConnect = QtWidgets.QPushButton(self.tab_2)
         self.btnBitalinoConnect.setGeometry(QtCore.QRect(10, 20, 161, 31))
         font = QtGui.QFont()
@@ -75,7 +69,7 @@ class Ui_MainWindowUi(object):
         self.btnBitalinoConnect.setFont(font)
         self.btnBitalinoConnect.setObjectName("btnBitalinoConnect")
         self.groupBox = QtWidgets.QGroupBox(self.tab_2)
-        self.groupBox.setGeometry(QtCore.QRect(0, 270, 1041, 141))
+        self.groupBox.setGeometry(QtCore.QRect(0, 290, 1041, 141))
         self.groupBox.setObjectName("groupBox")
         self.label = QtWidgets.QLabel(self.groupBox)
         self.label.setGeometry(QtCore.QRect(60, 30, 55, 16))
@@ -137,6 +131,23 @@ class Ui_MainWindowUi(object):
         self.label_Variancia = QtWidgets.QLabel(self.groupBox)
         self.label_Variancia.setGeometry(QtCore.QRect(740, 80, 55, 16))
         self.label_Variancia.setObjectName("label_Variancia")
+        self.label_countdown_questions = QtWidgets.QLabel(self.tab_2)
+        self.label_countdown_questions.setGeometry(QtCore.QRect(950, 70, 61, 31))
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_countdown_questions.setFont(font)
+        self.label_countdown_questions.setText("")
+        self.label_countdown_questions.setObjectName("label_countdown_questions")
+        self.btnStart = QtWidgets.QPushButton(self.tab_2)
+        self.btnStart.setGeometry(QtCore.QRect(180, 20, 141, 31))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        font.setBold(True)
+        font.setWeight(75)
+        self.btnStart.setFont(font)
+        self.btnStart.setObjectName("btnStart")
         self.tabWidget.addTab(self.tab_2, "")
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
@@ -216,178 +227,178 @@ class Ui_MainWindowUi(object):
         self.tabWidget_2.setObjectName("tabWidget_2")
         self.tab_5 = QtWidgets.QWidget()
         self.tab_5.setObjectName("tab_5")
-        self.label_Maximo_RQ1 = QtWidgets.QLabel(self.tab_5)
-        self.label_Maximo_RQ1.setGeometry(QtCore.QRect(80, 80, 55, 16))
-        self.label_Maximo_RQ1.setObjectName("label_Maximo_RQ1")
-        self.label_9 = QtWidgets.QLabel(self.tab_5)
-        self.label_9.setGeometry(QtCore.QRect(160, 50, 71, 16))
+        self.graphicsView_Q1 = QtWidgets.QGraphicsView(self.tab_5)
+        self.graphicsView_Q1.setGeometry(QtCore.QRect(520, 40, 471, 251))
+        self.graphicsView_Q1.setObjectName("graphicsView_Q1")
+        self.label_41 = QtWidgets.QLabel(self.tab_5)
+        self.label_41.setGeometry(QtCore.QRect(20, 70, 55, 16))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.label_9.setFont(font)
-        self.label_9.setObjectName("label_9")
-        self.label_12 = QtWidgets.QLabel(self.tab_5)
-        self.label_12.setGeometry(QtCore.QRect(330, 80, 71, 16))
+        self.label_41.setFont(font)
+        self.label_41.setObjectName("label_41")
+        self.label_42 = QtWidgets.QLabel(self.tab_5)
+        self.label_42.setGeometry(QtCore.QRect(320, 40, 111, 16))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.label_12.setFont(font)
-        self.label_12.setObjectName("label_12")
-        self.label_7 = QtWidgets.QLabel(self.tab_5)
-        self.label_7.setGeometry(QtCore.QRect(20, 80, 55, 16))
+        self.label_42.setFont(font)
+        self.label_42.setObjectName("label_42")
+        self.label_43 = QtWidgets.QLabel(self.tab_5)
+        self.label_43.setGeometry(QtCore.QRect(350, 70, 71, 16))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.label_7.setFont(font)
-        self.label_7.setObjectName("label_7")
-        self.label_Minimo_RQ1 = QtWidgets.QLabel(self.tab_5)
-        self.label_Minimo_RQ1.setGeometry(QtCore.QRect(80, 50, 55, 16))
-        self.label_Minimo_RQ1.setObjectName("label_Minimo_RQ1")
-        self.label_10 = QtWidgets.QLabel(self.tab_5)
-        self.label_10.setGeometry(QtCore.QRect(150, 80, 71, 16))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_10.setFont(font)
-        self.label_10.setObjectName("label_10")
-        self.label_Variancia_RQ1 = QtWidgets.QLabel(self.tab_5)
-        self.label_Variancia_RQ1.setGeometry(QtCore.QRect(420, 80, 55, 16))
-        self.label_Variancia_RQ1.setObjectName("label_Variancia_RQ1")
-        self.label_Resultado_Q1 = QtWidgets.QLabel(self.tab_5)
-        self.label_Resultado_Q1.setGeometry(QtCore.QRect(20, 150, 461, 121))
-        self.label_Resultado_Q1.setObjectName("label_Resultado_Q1")
+        self.label_43.setFont(font)
+        self.label_43.setObjectName("label_43")
         self.label_Mediana_RQ1 = QtWidgets.QLabel(self.tab_5)
-        self.label_Mediana_RQ1.setGeometry(QtCore.QRect(230, 80, 55, 16))
+        self.label_Mediana_RQ1.setGeometry(QtCore.QRect(240, 70, 55, 16))
         self.label_Mediana_RQ1.setObjectName("label_Mediana_RQ1")
-        self.label_desvioPadrao_RQ1 = QtWidgets.QLabel(self.tab_5)
-        self.label_desvioPadrao_RQ1.setGeometry(QtCore.QRect(420, 50, 55, 16))
-        self.label_desvioPadrao_RQ1.setObjectName("label_desvioPadrao_RQ1")
-        self.label_Media_RQ1 = QtWidgets.QLabel(self.tab_5)
-        self.label_Media_RQ1.setGeometry(QtCore.QRect(230, 50, 55, 16))
-        self.label_Media_RQ1.setObjectName("label_Media_RQ1")
-        self.label_11 = QtWidgets.QLabel(self.tab_5)
-        self.label_11.setGeometry(QtCore.QRect(300, 50, 111, 16))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_11.setFont(font)
-        self.label_11.setObjectName("label_11")
-        self.label_8 = QtWidgets.QLabel(self.tab_5)
-        self.label_8.setGeometry(QtCore.QRect(20, 50, 55, 16))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_8.setFont(font)
-        self.label_8.setObjectName("label_8")
+        self.label_Maximo_RQ1 = QtWidgets.QLabel(self.tab_5)
+        self.label_Maximo_RQ1.setGeometry(QtCore.QRect(80, 70, 55, 16))
+        self.label_Maximo_RQ1.setObjectName("label_Maximo_RQ1")
+        self.label_Resultado_Q1 = QtWidgets.QLabel(self.tab_5)
+        self.label_Resultado_Q1.setGeometry(QtCore.QRect(20, 150, 471, 51))
+        self.label_Resultado_Q1.setObjectName("label_Resultado_Q1")
         self.input_ResultadoFinal_Q1 = QtWidgets.QLabel(self.tab_5)
-        self.input_ResultadoFinal_Q1.setGeometry(QtCore.QRect(20, 20, 951, 20))
+        self.input_ResultadoFinal_Q1.setGeometry(QtCore.QRect(10, 10, 981, 21))
         font = QtGui.QFont()
         font.setPointSize(9)
         font.setBold(True)
         font.setWeight(75)
         self.input_ResultadoFinal_Q1.setFont(font)
         self.input_ResultadoFinal_Q1.setObjectName("input_ResultadoFinal_Q1")
-        self.label_13 = QtWidgets.QLabel(self.tab_5)
-        self.label_13.setGeometry(QtCore.QRect(20, 120, 111, 31))
+        self.label_desvioPadrao_RQ1 = QtWidgets.QLabel(self.tab_5)
+        self.label_desvioPadrao_RQ1.setGeometry(QtCore.QRect(440, 40, 55, 16))
+        self.label_desvioPadrao_RQ1.setObjectName("label_desvioPadrao_RQ1")
+        self.label_44 = QtWidgets.QLabel(self.tab_5)
+        self.label_44.setGeometry(QtCore.QRect(170, 40, 71, 16))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_44.setFont(font)
+        self.label_44.setObjectName("label_44")
+        self.label_45 = QtWidgets.QLabel(self.tab_5)
+        self.label_45.setGeometry(QtCore.QRect(20, 110, 111, 31))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
         font.setWeight(75)
-        self.label_13.setFont(font)
-        self.label_13.setObjectName("label_13")
-        self.graphicsView_Q1 = QtWidgets.QGraphicsView(self.tab_5)
-        self.graphicsView_Q1.setGeometry(QtCore.QRect(520, 20, 471, 251))
-        self.graphicsView_Q1.setObjectName("graphicsView_Q1")
-        self.tabWidget_2.addTab(self.tab_5, "")
-        self.tab_6 = QtWidgets.QWidget()
-        self.tab_6.setObjectName("tab_6")
-        self.label_Variancia_RQ2 = QtWidgets.QLabel(self.tab_6)
-        self.label_Variancia_RQ2.setGeometry(QtCore.QRect(440, 80, 55, 16))
-        self.label_Variancia_RQ2.setObjectName("label_Variancia_RQ2")
-        self.label_Maximo_RQ2 = QtWidgets.QLabel(self.tab_6)
-        self.label_Maximo_RQ2.setGeometry(QtCore.QRect(80, 80, 55, 16))
-        self.label_Maximo_RQ2.setObjectName("label_Maximo_RQ2")
-        self.label_18 = QtWidgets.QLabel(self.tab_6)
-        self.label_18.setGeometry(QtCore.QRect(170, 50, 71, 16))
+        self.label_45.setFont(font)
+        self.label_45.setObjectName("label_45")
+        self.label_46 = QtWidgets.QLabel(self.tab_5)
+        self.label_46.setGeometry(QtCore.QRect(20, 40, 55, 16))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.label_18.setFont(font)
-        self.label_18.setObjectName("label_18")
-        self.label_desvioPadrao_RQ2 = QtWidgets.QLabel(self.tab_6)
-        self.label_desvioPadrao_RQ2.setGeometry(QtCore.QRect(440, 50, 55, 16))
-        self.label_desvioPadrao_RQ2.setObjectName("label_desvioPadrao_RQ2")
-        self.label_Media_RQ2 = QtWidgets.QLabel(self.tab_6)
-        self.label_Media_RQ2.setGeometry(QtCore.QRect(240, 50, 55, 16))
-        self.label_Media_RQ2.setObjectName("label_Media_RQ2")
+        self.label_46.setFont(font)
+        self.label_46.setObjectName("label_46")
+        self.label_Minimo_RQ1 = QtWidgets.QLabel(self.tab_5)
+        self.label_Minimo_RQ1.setGeometry(QtCore.QRect(80, 40, 55, 16))
+        self.label_Minimo_RQ1.setObjectName("label_Minimo_RQ1")
+        self.label_Media_RQ1 = QtWidgets.QLabel(self.tab_5)
+        self.label_Media_RQ1.setGeometry(QtCore.QRect(240, 40, 55, 16))
+        self.label_Media_RQ1.setObjectName("label_Media_RQ1")
+        self.label_Variancia_RQ1 = QtWidgets.QLabel(self.tab_5)
+        self.label_Variancia_RQ1.setGeometry(QtCore.QRect(440, 70, 55, 16))
+        self.label_Variancia_RQ1.setObjectName("label_Variancia_RQ1")
+        self.label_47 = QtWidgets.QLabel(self.tab_5)
+        self.label_47.setGeometry(QtCore.QRect(160, 70, 71, 16))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_47.setFont(font)
+        self.label_47.setObjectName("label_47")
+        self.tabWidget_2.addTab(self.tab_5, "")
+        self.tab_6 = QtWidgets.QWidget()
+        self.tab_6.setObjectName("tab_6")
+        self.graphicsView_Q2 = QtWidgets.QGraphicsView(self.tab_6)
+        self.graphicsView_Q2.setGeometry(QtCore.QRect(520, 40, 471, 251))
+        self.graphicsView_Q2.setObjectName("graphicsView_Q2")
+        self.label_28 = QtWidgets.QLabel(self.tab_6)
+        self.label_28.setGeometry(QtCore.QRect(20, 70, 55, 16))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_28.setFont(font)
+        self.label_28.setObjectName("label_28")
+        self.label_35 = QtWidgets.QLabel(self.tab_6)
+        self.label_35.setGeometry(QtCore.QRect(320, 40, 111, 16))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_35.setFont(font)
+        self.label_35.setObjectName("label_35")
+        self.label_36 = QtWidgets.QLabel(self.tab_6)
+        self.label_36.setGeometry(QtCore.QRect(350, 70, 71, 16))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_36.setFont(font)
+        self.label_36.setObjectName("label_36")
+        self.label_Mediana_RQ2 = QtWidgets.QLabel(self.tab_6)
+        self.label_Mediana_RQ2.setGeometry(QtCore.QRect(240, 70, 55, 16))
+        self.label_Mediana_RQ2.setObjectName("label_Mediana_RQ2")
+        self.label_Maximo_RQ2 = QtWidgets.QLabel(self.tab_6)
+        self.label_Maximo_RQ2.setGeometry(QtCore.QRect(80, 70, 55, 16))
+        self.label_Maximo_RQ2.setObjectName("label_Maximo_RQ2")
+        self.label_Resultado_Q2 = QtWidgets.QLabel(self.tab_6)
+        self.label_Resultado_Q2.setGeometry(QtCore.QRect(20, 150, 471, 51))
+        self.label_Resultado_Q2.setObjectName("label_Resultado_Q2")
         self.input_ResultadoFinal_Q2 = QtWidgets.QLabel(self.tab_6)
-        self.input_ResultadoFinal_Q2.setGeometry(QtCore.QRect(20, 20, 961, 20))
+        self.input_ResultadoFinal_Q2.setGeometry(QtCore.QRect(10, 10, 981, 21))
         font = QtGui.QFont()
         font.setPointSize(9)
         font.setBold(True)
         font.setWeight(75)
         self.input_ResultadoFinal_Q2.setFont(font)
         self.input_ResultadoFinal_Q2.setObjectName("input_ResultadoFinal_Q2")
-        self.label_14 = QtWidgets.QLabel(self.tab_6)
-        self.label_14.setGeometry(QtCore.QRect(320, 50, 111, 16))
+        self.label_desvioPadrao_RQ2 = QtWidgets.QLabel(self.tab_6)
+        self.label_desvioPadrao_RQ2.setGeometry(QtCore.QRect(440, 40, 55, 16))
+        self.label_desvioPadrao_RQ2.setObjectName("label_desvioPadrao_RQ2")
+        self.label_37 = QtWidgets.QLabel(self.tab_6)
+        self.label_37.setGeometry(QtCore.QRect(170, 40, 71, 16))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.label_14.setFont(font)
-        self.label_14.setObjectName("label_14")
-        self.label_17 = QtWidgets.QLabel(self.tab_6)
-        self.label_17.setGeometry(QtCore.QRect(20, 80, 55, 16))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_17.setFont(font)
-        self.label_17.setObjectName("label_17")
-        self.label_Resultado_Q2 = QtWidgets.QLabel(self.tab_6)
-        self.label_Resultado_Q2.setGeometry(QtCore.QRect(20, 150, 461, 121))
-        self.label_Resultado_Q2.setObjectName("label_Resultado_Q2")
-        self.label_19 = QtWidgets.QLabel(self.tab_6)
-        self.label_19.setGeometry(QtCore.QRect(160, 80, 71, 16))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_19.setFont(font)
-        self.label_19.setObjectName("label_19")
-        self.label_Mediana_RQ2 = QtWidgets.QLabel(self.tab_6)
-        self.label_Mediana_RQ2.setGeometry(QtCore.QRect(240, 80, 55, 16))
-        self.label_Mediana_RQ2.setObjectName("label_Mediana_RQ2")
-        self.label_15 = QtWidgets.QLabel(self.tab_6)
-        self.label_15.setGeometry(QtCore.QRect(350, 80, 71, 16))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_15.setFont(font)
-        self.label_15.setObjectName("label_15")
-        self.label_20 = QtWidgets.QLabel(self.tab_6)
-        self.label_20.setGeometry(QtCore.QRect(20, 120, 111, 31))
+        self.label_37.setFont(font)
+        self.label_37.setObjectName("label_37")
+        self.label_38 = QtWidgets.QLabel(self.tab_6)
+        self.label_38.setGeometry(QtCore.QRect(20, 110, 111, 31))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
         font.setWeight(75)
-        self.label_20.setFont(font)
-        self.label_20.setObjectName("label_20")
-        self.label_16 = QtWidgets.QLabel(self.tab_6)
-        self.label_16.setGeometry(QtCore.QRect(20, 50, 55, 16))
+        self.label_38.setFont(font)
+        self.label_38.setObjectName("label_38")
+        self.label_39 = QtWidgets.QLabel(self.tab_6)
+        self.label_39.setGeometry(QtCore.QRect(20, 40, 55, 16))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.label_16.setFont(font)
-        self.label_16.setObjectName("label_16")
+        self.label_39.setFont(font)
+        self.label_39.setObjectName("label_39")
         self.label_Minimo_RQ2 = QtWidgets.QLabel(self.tab_6)
-        self.label_Minimo_RQ2.setGeometry(QtCore.QRect(80, 50, 55, 16))
+        self.label_Minimo_RQ2.setGeometry(QtCore.QRect(80, 40, 55, 16))
         self.label_Minimo_RQ2.setObjectName("label_Minimo_RQ2")
-        self.graphicsView_Q2 = QtWidgets.QGraphicsView(self.tab_6)
-        self.graphicsView_Q2.setGeometry(QtCore.QRect(520, 20, 471, 251))
-        self.graphicsView_Q2.setObjectName("graphicsView_Q2")
+        self.label_Media_RQ2 = QtWidgets.QLabel(self.tab_6)
+        self.label_Media_RQ2.setGeometry(QtCore.QRect(240, 40, 55, 16))
+        self.label_Media_RQ2.setObjectName("label_Media_RQ2")
+        self.label_Variancia_RQ2 = QtWidgets.QLabel(self.tab_6)
+        self.label_Variancia_RQ2.setGeometry(QtCore.QRect(440, 70, 55, 16))
+        self.label_Variancia_RQ2.setObjectName("label_Variancia_RQ2")
+        self.label_40 = QtWidgets.QLabel(self.tab_6)
+        self.label_40.setGeometry(QtCore.QRect(160, 70, 71, 16))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_40.setFont(font)
+        self.label_40.setObjectName("label_40")
         self.tabWidget_2.addTab(self.tab_6, "")
         self.tab_7 = QtWidgets.QWidget()
         self.tab_7.setObjectName("tab_7")
         self.input_ResultadoFinal_Q3 = QtWidgets.QLabel(self.tab_7)
-        self.input_ResultadoFinal_Q3.setGeometry(QtCore.QRect(20, 20, 961, 20))
+        self.input_ResultadoFinal_Q3.setGeometry(QtCore.QRect(10, 10, 981, 21))
         font = QtGui.QFont()
         font.setPointSize(9)
         font.setBold(True)
@@ -395,53 +406,53 @@ class Ui_MainWindowUi(object):
         self.input_ResultadoFinal_Q3.setFont(font)
         self.input_ResultadoFinal_Q3.setObjectName("input_ResultadoFinal_Q3")
         self.label_23 = QtWidgets.QLabel(self.tab_7)
-        self.label_23.setGeometry(QtCore.QRect(20, 50, 55, 16))
+        self.label_23.setGeometry(QtCore.QRect(20, 40, 55, 16))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
         self.label_23.setFont(font)
         self.label_23.setObjectName("label_23")
         self.label_desvioPadrao_RQ3 = QtWidgets.QLabel(self.tab_7)
-        self.label_desvioPadrao_RQ3.setGeometry(QtCore.QRect(440, 50, 55, 16))
+        self.label_desvioPadrao_RQ3.setGeometry(QtCore.QRect(440, 40, 55, 16))
         self.label_desvioPadrao_RQ3.setObjectName("label_desvioPadrao_RQ3")
         self.label_25 = QtWidgets.QLabel(self.tab_7)
-        self.label_25.setGeometry(QtCore.QRect(170, 50, 71, 16))
+        self.label_25.setGeometry(QtCore.QRect(170, 40, 71, 16))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
         self.label_25.setFont(font)
         self.label_25.setObjectName("label_25")
         self.label_21 = QtWidgets.QLabel(self.tab_7)
-        self.label_21.setGeometry(QtCore.QRect(320, 50, 111, 16))
+        self.label_21.setGeometry(QtCore.QRect(320, 40, 111, 16))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
         self.label_21.setFont(font)
         self.label_21.setObjectName("label_21")
         self.label_Maximo_RQ3 = QtWidgets.QLabel(self.tab_7)
-        self.label_Maximo_RQ3.setGeometry(QtCore.QRect(80, 80, 55, 16))
+        self.label_Maximo_RQ3.setGeometry(QtCore.QRect(80, 70, 55, 16))
         self.label_Maximo_RQ3.setObjectName("label_Maximo_RQ3")
         self.label_Variancia_RQ3 = QtWidgets.QLabel(self.tab_7)
-        self.label_Variancia_RQ3.setGeometry(QtCore.QRect(440, 80, 55, 16))
+        self.label_Variancia_RQ3.setGeometry(QtCore.QRect(440, 70, 55, 16))
         self.label_Variancia_RQ3.setObjectName("label_Variancia_RQ3")
         self.label_Resultado_Q3 = QtWidgets.QLabel(self.tab_7)
-        self.label_Resultado_Q3.setGeometry(QtCore.QRect(20, 150, 471, 121))
+        self.label_Resultado_Q3.setGeometry(QtCore.QRect(20, 150, 471, 51))
         self.label_Resultado_Q3.setObjectName("label_Resultado_Q3")
         self.label_Media_RQ3 = QtWidgets.QLabel(self.tab_7)
-        self.label_Media_RQ3.setGeometry(QtCore.QRect(240, 50, 55, 16))
+        self.label_Media_RQ3.setGeometry(QtCore.QRect(240, 40, 55, 16))
         self.label_Media_RQ3.setObjectName("label_Media_RQ3")
         self.label_26 = QtWidgets.QLabel(self.tab_7)
-        self.label_26.setGeometry(QtCore.QRect(160, 80, 71, 16))
+        self.label_26.setGeometry(QtCore.QRect(160, 70, 71, 16))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
         self.label_26.setFont(font)
         self.label_26.setObjectName("label_26")
         self.label_Mediana_RQ3 = QtWidgets.QLabel(self.tab_7)
-        self.label_Mediana_RQ3.setGeometry(QtCore.QRect(240, 80, 55, 16))
+        self.label_Mediana_RQ3.setGeometry(QtCore.QRect(240, 70, 55, 16))
         self.label_Mediana_RQ3.setObjectName("label_Mediana_RQ3")
         self.label_27 = QtWidgets.QLabel(self.tab_7)
-        self.label_27.setGeometry(QtCore.QRect(20, 120, 111, 31))
+        self.label_27.setGeometry(QtCore.QRect(20, 110, 111, 31))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
@@ -449,24 +460,24 @@ class Ui_MainWindowUi(object):
         self.label_27.setFont(font)
         self.label_27.setObjectName("label_27")
         self.label_24 = QtWidgets.QLabel(self.tab_7)
-        self.label_24.setGeometry(QtCore.QRect(20, 80, 55, 16))
+        self.label_24.setGeometry(QtCore.QRect(20, 70, 55, 16))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
         self.label_24.setFont(font)
         self.label_24.setObjectName("label_24")
         self.label_Minimo_RQ3 = QtWidgets.QLabel(self.tab_7)
-        self.label_Minimo_RQ3.setGeometry(QtCore.QRect(80, 50, 55, 16))
+        self.label_Minimo_RQ3.setGeometry(QtCore.QRect(80, 40, 55, 16))
         self.label_Minimo_RQ3.setObjectName("label_Minimo_RQ3")
         self.label_22 = QtWidgets.QLabel(self.tab_7)
-        self.label_22.setGeometry(QtCore.QRect(350, 80, 71, 16))
+        self.label_22.setGeometry(QtCore.QRect(350, 70, 71, 16))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
         self.label_22.setFont(font)
         self.label_22.setObjectName("label_22")
         self.graphicsView_Q3 = QtWidgets.QGraphicsView(self.tab_7)
-        self.graphicsView_Q3.setGeometry(QtCore.QRect(520, 20, 471, 251))
+        self.graphicsView_Q3.setGeometry(QtCore.QRect(520, 40, 471, 251))
         self.graphicsView_Q3.setObjectName("graphicsView_Q3")
         self.tabWidget_2.addTab(self.tab_7, "")
         self.tabWidget.addTab(self.tab_3, "")
@@ -482,10 +493,267 @@ class Ui_MainWindowUi(object):
         MainWindowUi.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindowUi)
-        self.tabWidget.setCurrentIndex(1)
-        self.tabWidget_2.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget_2.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindowUi)
 
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        self.liveData = [] #Recebe os dados em tempo real
+        self.accumulatedData = [] #Recebe e acumula os dados
+        self.restArray = []
+        self.question1Array = []
+        self.question2Array = []
+        self.question3Array = []
+        
+        
+        #definição das questões
+        self.questions = [
+            "Garante à máquina da verdade que não copiou no teste de Bioinstrumentação?",
+            "Garante à máquina da verdade que nunca copiou num teste das UC's do professor Nuno Dias?",
+            "Garante à máquina da verdade que nunca falou mal do professor Nuno Dias?",
+            ""
+        ]
+        
+        self.timeToRest = 2
+        self.timeToQuestion = 2
+        self.countdown = [self.timeToRest, self.timeToQuestion]
+
+        self.countdownTimer = QtCore.QTimer()
+        self.btnBitalinoConnect.clicked.connect(lambda:self.startBitalinoPlotting())
+        self.btnStart.clicked.connect(lambda:self.start_timer("restCountDown"))
+        
+        self.arrayIndex = 0        
+        
+        self.btn_CalcularResultados.clicked.connect(lambda:self.resultsCalc())        
+
+    
+    def startBitalinoPlotting(self):
+        plotWin = Ui_PlotWindow()
+        self.stop_threads = False
+        # Add the callbackfunc to ..
+        self.myDataLoop = threading.Thread(name = 'myDataLoop', target = dataSendLoop, daemon = True, args = (plotWin.addData_callbackFunc, self.calcResults_callbackFunc))
+        self.myDataLoop.start()
+        return
+    
+    
+    def calcResults_callbackFunc(self, usData):
+        self.liveData = usData
+        
+        if(self.arrayIndex == 0):
+            self.restArray.append(usData)
+        elif(self.arrayIndex == 1):
+            self.question1Array.append(usData)
+        elif(self.arrayIndex == 2):
+            self.question2Array.append(usData)
+        elif(self.arrayIndex == 3):
+            self.question3Array.append(usData)
+        
+        
+        self.accumulatedData.append(usData)
+        #print(self.dataArray)
+        self.minimo = format(np.min(self.accumulatedData), '.2f')
+        self.maximo = format(np.max(self.accumulatedData), '.2f')
+        self.media = format(np.mean(self.accumulatedData), '.2f')
+        self.mediana = format(np.median(self.accumulatedData), '.2f')
+        self.desvioPadrao = format(np.std(self.accumulatedData), '.2f')
+        self.variancia = format(np.var(self.accumulatedData), '.2f')
+        
+        #self.picos = find_peaks(self.accumulatedData, height = 1, threshold = 1, distance = 1)
+        #print('picos: ', self.picos)
+        
+        #print('Maximo', self.maximo)
+        
+        self.label_Minimo.setText(str(self.minimo)+'uS')
+        self.label_Maximo.setText(str(self.maximo)+'uS')
+        self.label_Media.setText(str(self.media)+'uS')
+        self.label_Mediana.setText(str(self.mediana)+'uS')
+        self.label_desvioPadrao.setText(str(self.desvioPadrao)+'uS')
+        self.label_Variancia.setText(str(self.variancia)+'uS')
+        
+
+        
+    
+    def start_timer(self, funcao):
+                
+        if(funcao == "restCountDown"):
+            self.inputPergunta.setText("Respire fundo e concentre-se...")
+            self.countdownTimer.timeout.connect(self.restCountDown)
+            self.countdownTimer.start(1000) # fires every 1000ms = 1s
+
+        elif (funcao == "questionsCountDown"):
+            self.countdownTimer.timeout.connect(self.questionsCountDown)
+            self.countdownTimer.start(1000) # fires every 1000ms = 1s
+        
+            
+
+
+
+    def restCountDown(self):
+        if (self.countdown[0] <= 0):
+            self.countdownTimer.stop()
+            self.countdownTimer.timeout.disconnect()
+            self.countdown[0] = 0
+            self.arrayIndex += 1
+            self.start_timer("questionsCountDown")
+            
+        
+        #update a clock label that shows the countdown value
+        self.inputPergunta.setText(str(self.countdown[0]))
+        self.countdown[0] -= 1
+        
+        
+    
+    def questionsCountDown(self):
+        self.qtdQuestions = len(self.questions)
+
+        if((self.arrayIndex) >= self.qtdQuestions):
+            self.inputPergunta.setText("O seu teste terminou, aguarde os resultados!")
+            self.label_countdown_questions.setText("")
+            self.countdownTimer.stop()
+            self.countdownTimer.timeout.disconnect()
+        else:
+            if (self.countdown[1] <= 0):
+                self.countdownTimer.stop()
+                self.countdownTimer.timeout.disconnect()
+                self.countdown[1] = self.timeToQuestion
+                self.arrayIndex += 1
+                self.start_timer("questionsCountDown")
+                
+
+            self.inputPergunta.setText(self.questions[self.arrayIndex-1])
+            self.label_countdown_questions.setText(str(self.countdown[1]))
+            self.countdown[1] -= 1
+        
+
+
+
+
+        
+    def resultsCalc(self):
+        self.input_ResultadoFinal_Q1.setText(str(self.questions[0]))
+        self.input_ResultadoFinal_Q2.setText(str(self.questions[1]))
+        self.input_ResultadoFinal_Q3.setText(str(self.questions[2]))
+        
+        #Calculo dos dados do periodo de repouso (PR)
+        #print("#Calculo dos dados do periodo de repouso (PR) ",self.restArray)
+        self.minimoPR = format(np.min(self.restArray), '.2f')
+        self.maximoPR = format(np.max(self.restArray), '.2f')
+        self.mediaPR = format(np.mean(self.restArray), '.2f')
+        self.medianaPR = format(np.median(self.restArray), '.2f')
+        self.desvioPadraoPR = format(np.std(self.restArray), '.2f')
+        self.varianciaPR = format(np.var(self.restArray), '.2f')
+                
+        self.label_Maximo_PR.setText(str(self.maximoPR))
+        self.label_Minimo_PR.setText(str(self.minimoPR))
+        self.label_Media_PR.setText(str(self.mediaPR))
+        self.label_Mediana_PR.setText(str(self.medianaPR))
+        self.label_desvioPadrao_PR.setText(str(self.desvioPadraoPR))
+        self.label_Variancia_PR.setText(str(self.varianciaPR))
+
+    
+        #valores limite para decidir o teste
+        self.meanFivePercent = format(np.mean(self.restArray)*1.05, '.2f')
+    
+        #Calculo dos dados do periodo de 1ª Questao (PR)
+        #print("#Calculo dos dados do periodo de 1ª Questao (PR) ",self.question1Array)
+        self.minimoQ1 = format(np.min(self.question1Array), '.2f')
+        self.maximoQ1 = format(np.max(self.question1Array), '.2f')
+        self.mediaQ1 = format(np.mean(self.question1Array), '.2f')
+        self.medianaQ1 = format(np.median(self.question1Array), '.2f')
+        self.desvioPadraoQ1 = format(np.std(self.question1Array), '.2f')
+        self.varianciaQ1 = format(np.var(self.question1Array), '.2f')
+                
+        self.label_Maximo_RQ1.setText(str(self.maximoQ1))
+        self.label_Minimo_RQ1.setText(str(self.minimoQ1))
+        self.label_Media_RQ1.setText(str(self.mediaQ1))
+        self.label_Mediana_RQ1.setText(str(self.medianaQ1))
+        self.label_desvioPadrao_RQ1.setText(str(self.desvioPadraoQ1))
+        self.label_Variancia_RQ1.setText(str(self.varianciaQ1))
+        
+        
+        self.graphicsView_Q1.set(self.question1Array)
+        
+        if(self.mediaQ1 > self.meanFivePercent):
+            self.label_Resultado_Q1.setText("Você mentiu")
+        elif(self.mediaQ1 < self.mediaPR):
+            self.label_Resultado_Q1.setText("Você disse a verdade")
+        else:
+            self.label_Resultado_Q1.setText("A máquina está indecisa")
+        
+    
+        #Calculo dos dados do periodo de 2ª Questao (PR)
+        #print("#Calculo dos dados do periodo de 2ª Questao (PR) ",self.question2Array)
+        self.minimoQ2 = format(np.min(self.question2Array), '.2f')
+        self.maximoQ2 = format(np.max(self.question2Array), '.2f')
+        self.mediaQ2 = format(np.mean(self.question2Array), '.2f')
+        self.medianaQ2 = format(np.median(self.question2Array), '.2f')
+        self.desvioPadraoQ2 = format(np.std(self.question2Array), '.2f')
+        self.varianciaQ2 = format(np.var(self.question2Array), '.2f')
+                
+        self.label_Maximo_RQ2.setText(str(self.maximoQ2))
+        self.label_Minimo_RQ2.setText(str(self.minimoQ2))
+        self.label_Media_RQ2.setText(str(self.mediaQ2))
+        self.label_Mediana_RQ2.setText(str(self.medianaQ2))
+        self.label_desvioPadrao_RQ2.setText(str(self.desvioPadraoQ2))
+        self.label_Variancia_RQ2.setText(str(self.varianciaQ2))
+        
+        if(self.mediaQ2 > self.meanFivePercent):
+            self.label_Resultado_Q2.setText("Você mentiu")
+        elif(self.mediaQ2 < self.mediaPR):
+            self.label_Resultado_Q2.setText("Você disse a verdade")
+        else:
+            self.label_Resultado_Q2.setText("A máquina está indecisa")
+        
+        
+        
+        #Calculo dos dados do periodo de 3ª Questao (PR)
+        print("#Calculo dos dados do periodo de 3ª Questao (PR) ",self.question3Array)
+        self.minimoQ3 = format(np.min(self.question3Array), '.2f')
+        self.maximoQ3 = format(np.max(self.question3Array), '.2f')
+        self.mediaQ3 = format(np.mean(self.question3Array), '.2f')
+        self.medianaQ3 = format(np.median(self.question3Array), '.2f')
+        self.desvioPadraoQ3 = format(np.std(self.question3Array), '.2f')
+        self.varianciaQ3 = format(np.var(self.question3Array), '.2f')
+                
+        self.label_Maximo_RQ3.setText(str(self.maximoQ3))
+        self.label_Minimo_RQ3.setText(str(self.minimoQ3))
+        self.label_Media_RQ3.setText(str(self.mediaQ3))
+        self.label_Mediana_RQ3.setText(str(self.medianaQ3))
+        self.label_desvioPadrao_RQ3.setText(str(self.desvioPadraoQ3))
+        self.label_Variancia_RQ3.setText(str(self.varianciaQ3))
+    
+
+        if(self.mediaQ3 > self.meanFivePercent):
+            self.label_Resultado_Q3.setText("Você mentiu")
+        elif(self.mediaQ3 < self.mediaPR):
+            self.label_Resultado_Q3.setText("Você disse a verdade")
+        else:
+            self.label_Resultado_Q3.setText("A máquina está indecisa")
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     def retranslateUi(self, MainWindowUi):
         _translate = QtCore.QCoreApplication.translate
         MainWindowUi.setWindowTitle(_translate("MainWindowUi", "Detector de Mentiras"))
@@ -508,9 +776,6 @@ class Ui_MainWindowUi(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindowUi", "Introdução"))
         self.inputPergunta.setText(_translate("MainWindowUi", "Perguntas..."))
-        self.btnStart.setText(_translate("MainWindowUi", "Começar"))
-        self.btnPergAnterior.setText(_translate("MainWindowUi", "Anterior"))
-        self.btnPergSeguinte.setText(_translate("MainWindowUi", "Próxima"))
         self.btnBitalinoConnect.setText(_translate("MainWindowUi", "Conectar Bitalino"))
         self.groupBox.setTitle(_translate("MainWindowUi", "Dados em tempo real"))
         self.label.setText(_translate("MainWindowUi", "Mínimo:"))
@@ -525,6 +790,7 @@ class Ui_MainWindowUi(object):
         self.label_Mediana.setText(_translate("MainWindowUi", "0.00uS"))
         self.label_desvioPadrao.setText(_translate("MainWindowUi", "0.00uS"))
         self.label_Variancia.setText(_translate("MainWindowUi", "0.00uS"))
+        self.btnStart.setText(_translate("MainWindowUi", "Começar"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindowUi", "Perguntas"))
         self.btn_CalcularResultados.setText(_translate("MainWindowUi", "Calcular"))
         self.groupBox_2.setTitle(_translate("MainWindowUi", "Valores em Respouso"))
@@ -540,37 +806,37 @@ class Ui_MainWindowUi(object):
         self.label_32.setText(_translate("MainWindowUi", "Mediana:"))
         self.label_31.setText(_translate("MainWindowUi", "Média:"))
         self.label_30.setText(_translate("MainWindowUi", "Máximo:"))
-        self.label_Maximo_RQ1.setText(_translate("MainWindowUi", "0.00uS"))
-        self.label_9.setText(_translate("MainWindowUi", "Média:"))
-        self.label_12.setText(_translate("MainWindowUi", "Variância:"))
-        self.label_7.setText(_translate("MainWindowUi", "Máximo:"))
-        self.label_Minimo_RQ1.setText(_translate("MainWindowUi", "0.00uS"))
-        self.label_10.setText(_translate("MainWindowUi", "Mediana:"))
-        self.label_Variancia_RQ1.setText(_translate("MainWindowUi", "0.00uS"))
-        self.label_Resultado_Q1.setText(_translate("MainWindowUi", "..."))
+        self.label_41.setText(_translate("MainWindowUi", "Máximo:"))
+        self.label_42.setText(_translate("MainWindowUi", "Desvio-Padrão:"))
+        self.label_43.setText(_translate("MainWindowUi", "Variância:"))
         self.label_Mediana_RQ1.setText(_translate("MainWindowUi", "0.00uS"))
-        self.label_desvioPadrao_RQ1.setText(_translate("MainWindowUi", "0.00uS"))
-        self.label_Media_RQ1.setText(_translate("MainWindowUi", "0.00uS"))
-        self.label_11.setText(_translate("MainWindowUi", "Desvio-Padrão:"))
-        self.label_8.setText(_translate("MainWindowUi", "Mínimo:"))
+        self.label_Maximo_RQ1.setText(_translate("MainWindowUi", "0.00uS"))
+        self.label_Resultado_Q1.setText(_translate("MainWindowUi", "..."))
         self.input_ResultadoFinal_Q1.setText(_translate("MainWindowUi", "TextLabel"))
-        self.label_13.setText(_translate("MainWindowUi", "Resultado:"))
+        self.label_desvioPadrao_RQ1.setText(_translate("MainWindowUi", "0.00uS"))
+        self.label_44.setText(_translate("MainWindowUi", "Média:"))
+        self.label_45.setText(_translate("MainWindowUi", "Resultado:"))
+        self.label_46.setText(_translate("MainWindowUi", "Mínimo:"))
+        self.label_Minimo_RQ1.setText(_translate("MainWindowUi", "0.00uS"))
+        self.label_Media_RQ1.setText(_translate("MainWindowUi", "0.00uS"))
+        self.label_Variancia_RQ1.setText(_translate("MainWindowUi", "0.00uS"))
+        self.label_47.setText(_translate("MainWindowUi", "Mediana:"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_5), _translate("MainWindowUi", "Questão 1"))
-        self.label_Variancia_RQ2.setText(_translate("MainWindowUi", "0.00uS"))
-        self.label_Maximo_RQ2.setText(_translate("MainWindowUi", "0.00uS"))
-        self.label_18.setText(_translate("MainWindowUi", "Média:"))
-        self.label_desvioPadrao_RQ2.setText(_translate("MainWindowUi", "0.00uS"))
-        self.label_Media_RQ2.setText(_translate("MainWindowUi", "0.00uS"))
-        self.input_ResultadoFinal_Q2.setText(_translate("MainWindowUi", "TextLabel"))
-        self.label_14.setText(_translate("MainWindowUi", "Desvio-Padrão:"))
-        self.label_17.setText(_translate("MainWindowUi", "Máximo:"))
-        self.label_Resultado_Q2.setText(_translate("MainWindowUi", "..."))
-        self.label_19.setText(_translate("MainWindowUi", "Mediana:"))
+        self.label_28.setText(_translate("MainWindowUi", "Máximo:"))
+        self.label_35.setText(_translate("MainWindowUi", "Desvio-Padrão:"))
+        self.label_36.setText(_translate("MainWindowUi", "Variância:"))
         self.label_Mediana_RQ2.setText(_translate("MainWindowUi", "0.00uS"))
-        self.label_15.setText(_translate("MainWindowUi", "Variância:"))
-        self.label_20.setText(_translate("MainWindowUi", "Resultado:"))
-        self.label_16.setText(_translate("MainWindowUi", "Mínimo:"))
+        self.label_Maximo_RQ2.setText(_translate("MainWindowUi", "0.00uS"))
+        self.label_Resultado_Q2.setText(_translate("MainWindowUi", "..."))
+        self.input_ResultadoFinal_Q2.setText(_translate("MainWindowUi", "TextLabel"))
+        self.label_desvioPadrao_RQ2.setText(_translate("MainWindowUi", "0.00uS"))
+        self.label_37.setText(_translate("MainWindowUi", "Média:"))
+        self.label_38.setText(_translate("MainWindowUi", "Resultado:"))
+        self.label_39.setText(_translate("MainWindowUi", "Mínimo:"))
         self.label_Minimo_RQ2.setText(_translate("MainWindowUi", "0.00uS"))
+        self.label_Media_RQ2.setText(_translate("MainWindowUi", "0.00uS"))
+        self.label_Variancia_RQ2.setText(_translate("MainWindowUi", "0.00uS"))
+        self.label_40.setText(_translate("MainWindowUi", "Mediana:"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_6), _translate("MainWindowUi", "Questão 2"))
         self.input_ResultadoFinal_Q3.setText(_translate("MainWindowUi", "TextLabel"))
         self.label_23.setText(_translate("MainWindowUi", "Mínimo:"))
@@ -613,3 +879,7 @@ if __name__ == "__main__":
     ui.setupUi(MainWindowUi)
     MainWindowUi.show()
     sys.exit(app.exec_())
+
+    
+    
+    

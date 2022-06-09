@@ -13,6 +13,7 @@ import threading
 from PyQt5.QtWidgets import *
 from ui.PlotWindowConfig import Ui_PlotWindow
 from scipy.signal import find_peaks
+import matplotlib.pyplot as plt
 from dataReader import *
 
 
@@ -485,7 +486,7 @@ class Ui_MainWindowUi(object):
         MainWindowUi.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindowUi)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindowUi)
 
@@ -658,6 +659,19 @@ class Ui_MainWindowUi(object):
     
         #valores limite para decidir o teste
         self.meanFivePercent = format(np.mean(self.restArray)*1.05, '.2f')
+        
+        self.xAxisInterval = (self.countdown[1]/len(self.restArray))
+        peaks, _ = find_peaks(self.restArray, distance=1)
+        print("peaks ", peaks)
+        print("self.restArray ",self.restArray)
+        print("self.xAxisInterval ",self.xAxisInterval)
+        plt.xlim(0, 15)
+        plt.plot(self.restArray)
+        #plt.plot(peaks, self.restArray[peaks], "x")
+        plt.show()
+        
+  
+
     
         #Calculo dos dados do periodo de 1ª Questao (PR)
         #print("#Calculo dos dados do periodo de 1ª Questao (PR) ",self.question1Array)
@@ -676,7 +690,6 @@ class Ui_MainWindowUi(object):
         self.label_Variancia_RQ1.setText(str(self.varianciaQ1))
         
         
-        self.graphicsView_Q1.set(self.question1Array)
         
         if(self.mediaQ1 > self.meanFivePercent):
             self.label_Resultado_Q1.setText("Você mentiu")
@@ -712,7 +725,7 @@ class Ui_MainWindowUi(object):
         
         
         #Calculo dos dados do periodo de 3ª Questao (PR)
-        print("#Calculo dos dados do periodo de 3ª Questao (PR) ",self.question3Array)
+        #print("#Calculo dos dados do periodo de 3ª Questao (PR) ",self.question3Array)
         self.minimoQ3 = format(np.min(self.question3Array), '.2f')
         self.maximoQ3 = format(np.max(self.question3Array), '.2f')
         self.mediaQ3 = format(np.mean(self.question3Array), '.2f')
