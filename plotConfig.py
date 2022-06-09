@@ -12,14 +12,16 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
     def __init__(self):
         self.addedData = []
         print(matplotlib.__version__)
+        
         # The data
         self.xlim = 200
-        self.n = np.linspace(0, self.xlim - 1, self.xlim)
-      
-        self.y = (self.n * 0.0) + 50
+        self.x = np.linspace(0, self.xlim - 1, self.xlim)
+        self.y = (self.x * 0.0) + 50
+        
         # The window
         self.fig = Figure(figsize=(5,5), dpi=100)
         self.ax1 = self.fig.add_subplot(111)
+        
         # self.ax1 settings
         self.ax1.set_xlabel('Tempo (mS)')
         self.ax1.set_ylabel('uS (MicroSiemens)')
@@ -30,13 +32,14 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
         self.ax1.add_line(self.line1_tail)
         self.ax1.add_line(self.line1_head)
         self.ax1.set_xlim(0, self.xlim - 1)
-        self.ax1.set_ylim(0, 25) #yAxis
+        self.ax1.set_ylim(0, 100) #yAxis uS
+        
         FigureCanvas.__init__(self, self.fig)
-        TimedAnimation.__init__(self, self.fig, interval = 1000, blit = True)
+        TimedAnimation.__init__(self, self.fig, interval = 50, blit = True)
         return
 
     def new_frame_seq(self):
-        return iter(range(self.n.size))
+        return iter(range(self.x.size))
 
     def _init_draw(self):
         lines = [self.line1, self.line1_tail, self.line1_head]
@@ -44,9 +47,11 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
             l.set_data([], [])
         return
 
+
     def addData(self, value):
         self.addedData.append(value)
         return
+
 
     def _step(self, *args):
         # Extends the _step() method for the TimedAnimation class.
@@ -66,9 +71,9 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
             self.y[-1] = self.addedData[0]
             del(self.addedData[0])
 
-        self.line1.set_data(self.n[ 0 : self.n.size - margin ], self.y[ 0 : self.n.size - margin ])
-        self.line1_tail.set_data(np.append(self.n[-10:-1 - margin], self.n[-1 - margin]), np.append(self.y[-10:-1 - margin], self.y[-1 - margin]))
-        self.line1_head.set_data(self.n[-1 - margin], self.y[-1 - margin])
+        self.line1.set_data(self.x[ 0 : self.x.size - margin ], self.y[ 0 : self.x.size - margin ])
+        self.line1_tail.set_data(np.append(self.x[-10:-1 - margin], self.x[-1 - margin]), np.append(self.y[-10:-1 - margin], self.y[-1 - margin]))
+        self.line1_head.set_data(self.x[-1 - margin], self.y[-1 - margin])
         self._drawn_artists = [self.line1, self.line1_tail, self.line1_head]
         return
 
