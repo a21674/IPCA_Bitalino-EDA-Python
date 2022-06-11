@@ -1065,6 +1065,8 @@ class Ui_MainWindowUi(object):
         self.calcPeaks()
     
     
+    
+    
     def calcPeaks(self):
         
         #--------------Preparação de dados para plot do periodo de repouso ----------------
@@ -1076,81 +1078,120 @@ class Ui_MainWindowUi(object):
         #---------------Peaks da Questão 1-----------------
         self.yQ1 = np.array(self.question1Array)
         self.peaksQ1, _ = find_peaks(self.yQ1, height = 0.5)
+    
+        #Deteção dos picos minimos e filtro pelos que estão ao lado dos picos maximos
         self.minsQ1, _ =find_peaks(self.yQ1*-1)
+        self.closest_minsQ1 = [self.minsQ1[np.argmin(np.abs(x - self.minsQ1))] for x in self.peaksQ1]    
         
-        self.closest_minsQ1 = [self.minsQ1[np.argmin(np.abs(x - self.minsQ1))] for x in self.peaksQ1]
-        
+        #Definição da escala do eixo X
         self.xAxisIntervalQ1 = (self.timeToQuestion/len(self.yQ1))
         self.xAxisQ1 = np.arange(0, self.timeToQuestion, self.xAxisIntervalQ1) 
         
         #Coodenadas dos picos
         self.coordXYQ1 = [(i,j) for i, j in zip(self.xAxisQ1[self.peaksQ1], self.yQ1[self.peaksQ1] )]
         
+        #Coodenadas dos Closest Valleys
+        self.coordXYValleyQ1 = [(i,j) for i, j in zip(self.xAxisQ1[self.minsQ1], self.yQ1[self.minsQ1] )]
+
+        
+        #Preenchimento do formulário
         self.PeakAmplitudeQ1 = format(self.coordXYQ1[0][1], '.2f')
         self.PeakTimeQ1 = format(self.coordXYQ1[0][0], '.2f')
+        self.ScrLatencyQ1 = format(self.coordXYValleyQ1[0][0], '.2f')
+        self.ResponseDelayQ1 =  format(float(self.PeakTimeQ1) - float(self.ScrLatencyQ1), '.2f')
+        
         self.label_PT_RQ1.setText(str(self.PeakTimeQ1) + 'seg')
         self.label_PA_RQ1.setText(str(self.PeakAmplitudeQ1) + 'uS')
+        self.label_LAT_RQ1.setText(str(self.ScrLatencyQ1) + 'seg')
+        self.label_RD_RQ1.setText(str(self.ResponseDelayQ1) + 'seg')
     
     
     
         #---------------Peaks da Questão 2-----------------
         self.yQ2 = np.array(self.question2Array)
         self.peaksQ2, _ = find_peaks(self.yQ2, height = 0.5)
+        
+        #Deteção dos picos minimos e filtro pelos que estão ao lado dos picos maximos
         self.minsQ2, _ = find_peaks(self.yQ2*-1)
-        
         self.closest_minsQ2 = [self.minsQ2[np.argmin(np.abs(x - self.minsQ2))] for x in self.peaksQ2]
-        print("self.closest_minsQ2", self.closest_minsQ2)
         
+        #Definição da escala do eixo X
         self.xAxisIntervalQ2 = (self.timeToQuestion/len(self.yQ2))
         self.xAxisQ2 = np.arange(0, self.timeToQuestion, self.xAxisIntervalQ2) 
-        
+
         #Coodenadas dos picos
         self.coordXYQ2 = [(i,j) for i, j in zip(self.xAxisQ2[self.peaksQ2], self.yQ2[self.peaksQ2] )]
+        
+        #Coodenadas dos Closest Valleys
+        self.coordXYValleyQ2 = [(i,j) for i, j in zip(self.xAxisQ2[self.minsQ2], self.yQ2[self.minsQ2] )]
+        
+        
+        #Preenchimento do formulário
         self.PeakTimeQ2 = format(self.coordXYQ2[0][0], '.2f')
         self.PeakAmplitudeQ2 = format(self.coordXYQ2[0][1], '.2f')
+        self.ScrLatencyQ2 = format(self.coordXYValleyQ2[0][0], '.2f')
+        self.ResponseDelayQ2 =  format(float(self.PeakTimeQ2) - float(self.ScrLatencyQ2), '.2f')
         
         self.label_PT_RQ2.setText(str(self.PeakTimeQ2) + 'seg')
         self.label_PA_RQ2.setText(str(self.PeakAmplitudeQ2) + 'uS')
-        
+        self.label_LAT_RQ2.setText(str(self.ScrLatencyQ2) + 'seg')
+        self.label_RD_RQ2.setText(str(self.ResponseDelayQ2) + 'seg')
     
+
 
         #---------------Peaks da Questão 3-----------------
         self.yQ3 = np.array(self.question3Array)
         self.peaksQ3, _ = find_peaks(self.yQ3, height = 0.5)
+        
+        #Deteção dos picos minimos e filtro pelos que estão ao lado dos picos maximos
         self.minsQ3, _ =find_peaks(self.yQ3*-1)
-        
         self.closest_minsQ3 = [self.minsQ3[np.argmin(np.abs(x - self.minsQ3))] for x in self.peaksQ3]
-        print("self.closest_minsQ3", self.closest_minsQ3)
         
+        #Definição da escala do eixo X
         self.xAxisIntervalQ3 = (self.timeToQuestion/len(self.yQ3))
         self.xAxisQ3 = np.arange(0, self.timeToQuestion, self.xAxisIntervalQ3) 
         
         #Coodenadas dos picos
         self.coordXYQ3 = [(i,j) for i, j in zip(self.xAxisQ3[self.peaksQ3], self.yQ3[self.peaksQ3] )]
+        
+        #Coodenadas dos Closest Valleys
+        self.coordXYValleyQ3 = [(i,j) for i, j in zip(self.xAxisQ3[self.minsQ3], self.yQ3[self.minsQ3] )]
+        
+        
+        #Preenchimento do formulário usando o primeiro pico como referencia
         self.PeakTimeQ3 = format(self.coordXYQ3[0][0], '.2f')
         self.PeakAmplitudeQ3 = format(self.coordXYQ3[0][1], '.2f')
+        self.ScrLatencyQ3 = format(self.coordXYValleyQ3[0][0], '.2f')
+        self.ResponseDelayQ3 = format(float(self.PeakTimeQ3) - float(self.ScrLatencyQ3), '.2f')
         
         self.label_PT_RQ3.setText(str(self.PeakTimeQ3) + 'seg')
         self.label_PA_RQ3.setText(str(self.PeakAmplitudeQ3) + 'uS')
+        self.label_LAT_RQ3.setText(str(self.ScrLatencyQ3) + 'seg')
+        self.label_RD_RQ3.setText(str(self.ResponseDelayQ3) + 'seg')
         
         
     
         #---------------Peaks do Periodo Total do Teste-----------------
         self.yTotal = np.concatenate((self.yRep, self.yQ1, self.yQ2, self.yQ3))
         self.peaksTotal, _ = find_peaks(self.yTotal, height = 0.5)
+        
+        #Deteção dos picos minimos e filtro pelos que estão ao lado dos picos maximos
         self.minsTotal, _ =find_peaks(self.yTotal*-1)
-        
         self.closest_minsTotal = [self.minsTotal[np.argmin(np.abs(x - self.minsTotal))] for x in self.peaksTotal]
-        #self.differenceTotal = self.yTotal[self.peaksTotal] - self.yTotal[self.closest_minsTotal]
-        #print("difference Total", self.differenceTotal)
         
-        
+        #Definição da escala do eixo X
         self.tempoTotal = self.timeToRest + self.timeToQuestion*(len(self.questions)-1)
         self.xAxisIntervalTotal = (self.tempoTotal/len(self.yTotal))
         self.xAxisTotal = np.arange(0, self.tempoTotal, self.xAxisIntervalTotal) #tempo em segundos da duração do reste repouso
     
+        #Coodenadas dos picos
+        self.coordXYTotal = [(i,j) for i, j in zip(self.xAxisTotal[self.peaksTotal], self.yTotal[self.peaksTotal] )]
     
-    
+        #Coodenadas dos Closest Valleys
+        self.coordXYValleyTotal = [(i,j) for i, j in zip(self.xAxisTotal[self.minsTotal], self.yTotal[self.minsTotal] )]
+        print("Coodenadas dos Valleys Proximos Total: ", self.coordXYValleyTotal)
+        
+        
     
     def multiPlotData(self):
         
@@ -1165,15 +1206,17 @@ class Ui_MainWindowUi(object):
 
         
         
-        
-        
         #---------------Plot Data da Questão 1---------------
         axis[0, 1].set_title('Periodo da Questão nº 1')
         axis[0, 1].plot(self.xAxisQ1, self.yQ1, 'tab:orange')
         axis[0, 1].plot(self.xAxisQ1[self.peaksQ1], self.yQ1[self.peaksQ1], "x")
         axis[0, 1].plot(self.xAxisQ1[self.peaksQ1], self.yQ1[self.peaksQ1], "x")
-        axis[0, 1].vlines(x=self.coordXYQ1[0][0], ymin=0, ymax=self.coordXYQ1[0][1], colors='k', linestyles='dashed')
-        axis[0, 1].hlines(y=self.coordXYQ1[0][1], xmin=0, xmax=self.coordXYQ1[0][0], colors='k', linestyles='dashed')
+        
+        axis[0, 1].vlines(x=self.coordXYQ1[0][0], ymin=0, ymax=self.coordXYQ1[0][1], colors='k', linestyles='dashed') #PA
+        axis[0, 1].hlines(y=self.coordXYQ1[0][1], xmin=0, xmax=self.coordXYQ1[0][0], colors='k', linestyles='dashed') #PT
+        axis[0, 1].hlines(y=self.coordXYValleyQ1[0][1], xmin=self.coordXYValleyQ1[0][0], xmax=self.coordXYQ1[0][0], colors='red', linestyles='dashed') #RD
+        axis[0, 1].hlines(y=self.coordXYValleyQ1[0][1], xmin=0, xmax=self.coordXYValleyQ1[0][0], colors='blue', linestyles='dashed') #LAT
+        
         axis[0, 1].plot(self.xAxisQ1[self.closest_minsQ1], self.yQ1[self.closest_minsQ1],'o', label = 'closest mins')
         axis[0, 1].grid()
 
@@ -1185,6 +1228,12 @@ class Ui_MainWindowUi(object):
         axis[1, 0].set_xlabel('Segundos')
         axis[1, 0].plot(self.xAxisQ2, self.yQ2, 'tab:green')
         axis[1, 0].plot(self.xAxisQ2[self.peaksQ2], self.yQ2[self.peaksQ2], "x")
+        
+        axis[1, 0].vlines(x=self.coordXYQ2[0][0], ymin=0, ymax=self.coordXYQ2[0][1], colors='k', linestyles='dashed') #PA
+        axis[1, 0].hlines(y=self.coordXYQ2[0][1], xmin=0, xmax=self.coordXYQ2[0][0], colors='k', linestyles='dashed') #PT
+        axis[1, 0].hlines(y=self.coordXYValleyQ2[0][1], xmin=self.coordXYValleyQ2[0][0], xmax=self.coordXYQ2[0][0], colors='red', linestyles='dashed') #RD
+        axis[1, 0].hlines(y=self.coordXYValleyQ2[0][1], xmin=0, xmax=self.coordXYValleyQ2[0][0], colors='blue', linestyles='dashed') #LAT
+        
         axis[1, 0].plot(self.xAxisQ2[self.closest_minsQ2], self.yQ2[self.closest_minsQ2],'o', label = 'closest mins')
         axis[1, 0].grid()
 
@@ -1196,12 +1245,18 @@ class Ui_MainWindowUi(object):
         axis[1, 1].set_xlabel('Segundos')
         axis[1, 1].plot(self.xAxisQ3, self.yQ3, 'tab:red')
         axis[1, 1].plot(self.xAxisQ3[self.peaksQ3], self.yQ3[self.peaksQ3], "x")
+        
+        axis[1, 1].vlines(x=self.coordXYQ3[0][0], ymin=0, ymax=self.coordXYQ3[0][1], colors='k', linestyles='dashed') #PA
+        axis[1, 1].hlines(y=self.coordXYQ3[0][1], xmin=0, xmax=self.coordXYQ3[0][0], colors='k', linestyles='dashed') #PT
+        axis[1, 1].hlines(y=self.coordXYValleyQ3[0][1], xmin=self.coordXYValleyQ3[0][0], xmax=self.coordXYQ3[0][0], colors='red', linestyles='dashed') #RD
+        axis[1, 1].hlines(y=self.coordXYValleyQ3[0][1], xmin=0, xmax=self.coordXYValleyQ3[0][0], colors='blue', linestyles='dashed') #LAT
+        
         axis[1, 1].plot(self.xAxisQ3[self.closest_minsQ3], self.yQ3[self.closest_minsQ3],'o', label = 'closest mins')
         axis[1, 1].grid()
 
         
         
-        
+        #Ajusta e mostra Array de graficos
         plt.tight_layout()
         plt.show()
         
@@ -1210,7 +1265,7 @@ class Ui_MainWindowUi(object):
         
     def onePlotData(self):
         
-              
+        #Divisão das diferentes etapas
         plt.axvline(self.timeToRest, linewidth=2, color='k', linestyle='--')
         plt.axvline((self.timeToRest + self.timeToQuestion), linewidth=2, color='r', linestyle='--')
         plt.axvline((self.timeToRest + (self.timeToQuestion*2)), linewidth=2, color='r', linestyle='--')
@@ -1221,7 +1276,7 @@ class Ui_MainWindowUi(object):
         plt.plot(self.xAxisTotal, self.yTotal)
         plt.plot(self.xAxisTotal[self.peaksTotal], self.yTotal[self.peaksTotal], "x")
         plt.plot(self.xAxisTotal[self.closest_minsTotal], self.yTotal[self.closest_minsTotal],'o', label = 'closest mins')
-                
+        
         
         plt.tight_layout()
         plt.show()
