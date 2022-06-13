@@ -832,8 +832,8 @@ class Ui_MainWindowUi(object):
             ""
         ]
         
-        self.timeToRest = 5
-        self.timeToQuestion = 5
+        self.timeToRest = 15
+        self.timeToQuestion = 15
         self.countdown = [self.timeToRest, self.timeToQuestion]
 
         self.countdownTimer = QtCore.QTimer()

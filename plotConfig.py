@@ -23,7 +23,7 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
         self.ax1 = self.fig.add_subplot(111)
         
         # self.ax1 settings
-        self.ax1.set_xlabel('Tempo (mS)')
+        #self.ax1.set_xlabel('Tempo (mS)')
         self.ax1.set_ylabel('uS (MicroSiemens)')
         self.line1 = Line2D([], [], color='blue')
         self.line1_tail = Line2D([], [], color='red', linewidth=2)
@@ -32,10 +32,10 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
         self.ax1.add_line(self.line1_tail)
         self.ax1.add_line(self.line1_head)
         self.ax1.set_xlim(0, self.xlim - 1)
-        self.ax1.set_ylim(0, 100) #yAxis uS
+        self.ax1.set_ylim(0, 20) #yAxis uS
         
         FigureCanvas.__init__(self, self.fig)
-        TimedAnimation.__init__(self, self.fig, interval = 50, blit = True)
+        TimedAnimation.__init__(self, self.fig, interval = 100, blit = True)
         return
 
     def new_frame_seq(self):
